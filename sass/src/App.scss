@@ -42,7 +42,7 @@
 */
 
 .ux-start-button-icon {
-  background-image: url(images/taskbar/sencha.gif) !important;
+  background-image: url(images/taskbar/home.png) !important;
   background-color: transparent;
 }
 
@@ -175,6 +175,7 @@ div.ux-taskbar div.x-toolbar {
   height: 48px;
   background-color: transparent;
   background-repeat: no-repeat;
+  background-size: 100% 100%;
 }
 
 .ux-desktop-shortcut-text {

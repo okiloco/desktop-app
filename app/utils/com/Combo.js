@@ -102,7 +102,6 @@ Ext.define('MyDesktop.utils.com.Combo', {
                     tooltip=(tooltip!="")?"Filtrar "+tooltip:"Filtrar";
                     filtrar.tooltip=tooltip;
                     Ext.Array.each(self.triggerEl.elements,function(item,index){
-                        console.log(item);
                         Ext.tip.QuickTipManager.register({
                             target: item.getAttribute("id"),
                             // title: 'My Tooltip',

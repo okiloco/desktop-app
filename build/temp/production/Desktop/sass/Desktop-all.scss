@@ -1155,6 +1155,7 @@ $include-ext-window-messagebox: dynamic(true);;
 $include-ext-window-toast: dynamic(false);;
 $include-ext-window-window: dynamic(true);;
 $include-helper: dynamic(false);;
+$include-modulo: dynamic(false);;
 $include-mydesktop-application: dynamic(false);;
 $include-mydesktop-authenticationcontroller: dynamic(true);;
 $include-mydesktop-dialog: dynamic(true);;
@@ -1171,7 +1172,6 @@ $include-mydesktop-utils-com-searchbutton: dynamic(true);;
 $include-mydesktop-utils-searchfield: dynamic(false);;
 $include-mydesktop-view-main-maincontroller: dynamic(false);;
 $include-mydesktop-view-main-mainmodel: dynamic(false);;
-$include-persona: dynamic(false);;
 $output-paths: ("path": "../resources");
 
 /* ======================== ETC ======================== */

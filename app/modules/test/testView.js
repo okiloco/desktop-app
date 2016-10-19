@@ -1,25 +1,15 @@
 Ext.define('Desktop.modules.test.testView', {
 	extend: 'Ext.form.Panel',
 	alias: ['widget.testview'],
-
+	bodyPadding:'5px',
 	initComponent: function() {
 		var me = this;
-
 		
-		Ext.define('Persona', {
+		Ext.define('Modulo', {
 			extend: 'Ext.data.Model',
 			fields:[
-				'nombre',
-				'email',
-				'telefono'
+				'className'
 			]
-			
-		});
-
-		var model=Ext.create('Persona',{
-			nombre:'xsas',
-			email:'xsas@c.co',
-			telefono:'23232'
 		});
 
 		Ext.applyIf(me, {
@@ -28,23 +18,23 @@ Ext.define('Desktop.modules.test.testView', {
 				{
 					xtype: 'textfield',
 					name: 'nombre',
-					fieldLabel: 'Nombre'
+					emptyText: 'Nombre'
 				},
 				{
 					xtype: 'textfield',
 					name: 'email',
-					fieldLabel: 'Email'
+					emptyText: 'Email'
 				},
 				{
 					xtype: 'textfield',
 					name: 'telefono',
-					fieldLabel: 'Telefono'
+					emptyText: 'Telefono'
 				},
 				{
 					xtype: 'listBox',
 					name: 'tipo',
-					fieldLabel: 'Tipo',
-					store: Ext.create('Ext.data.Store', {
+					emptyText: 'Tipo',
+					store: Ext.create('MyDesktop.utils.Store', {
 					    fields: ['value', 'name'],
 					    data : [
 					        {"value":"AL", "name":"Alabama"}        
@@ -54,29 +44,23 @@ Ext.define('Desktop.modules.test.testView', {
 				    displayField: 'name',
 				    valueField: 'value'
 				},
-				Ext.create('Ext.form.field.ComboBox', {
-				    fieldLabel: 'My Custom Field',
-				    triggers: {
-				        foo: {
-				            cls: 'my-foo-trigger',
-				            weight: -2, // negative to place before default triggers
-				            handler: function() {
-				                console.log('foo trigger clicked');
-				            }
-				        },
-				        bar: {
-				            cls: 'my-bar-trigger',
-				            weight: -1,
-				            handler: function() {
-				                console.log('bar trigger clicked');
-				            }
-				        }
-				    }
-				})
+				{
+					xtype: 'listBox',
+					name: 'className',
+					emptyText: 'Modulo',
+					width:200,
+					store: Ext.create('MyDesktop.utils.Store', {
+						model:'Modulo',
+						url:Constants.URL_MODULOS
+					}),
+					queryMode: 'local',
+				    displayField: 'className',
+				    valueField: 'className'
+				}
 			],
 			listeners:{
 				afterrender:function(self){
-					self.loadRecord(model);
+					// self.loadRecord(model);
 				}
 			}
 			

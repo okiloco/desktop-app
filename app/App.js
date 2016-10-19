@@ -13,7 +13,6 @@ Ext.define('Desktop.App', {
         'Ext.ux.desktop.ShortcutModel',
         'MyDesktop.utils.Store',
         'MyDesktop.utils.com.*'
-        
     ],
 
     init: function() {
