@@ -10,7 +10,7 @@ Ext.define('Desktop.modules.test.test', {
     extend: 'Ext.ux.desktop.Module',
 
     uses: [
-        'Ext.ux.desktop.Video'
+       /* 'Ext.ux.desktop.Video'*/
     ],
 
     id:'test',
@@ -22,7 +22,7 @@ Ext.define('Desktop.modules.test.test', {
     init : function(){
         this.launcher = {
             text: 'Test Module',
-            iconCls:'video'
+            // iconCls:'fa fa-home'
         }
     },
 
@@ -36,7 +36,7 @@ Ext.define('Desktop.modules.test.test', {
                 title: 'Test Module',
                 width: 740,
                 height: 480,
-                iconCls: 'video',
+                iconCls: 'fa fa-home',
                 animCollapse: false,
                 border: false,
 

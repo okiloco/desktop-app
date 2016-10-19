@@ -1,0 +1,24 @@
+/* Iconos */
+.user {
+  background-image:url( ../images/user.gif ) !important;
+}
+.laptop-shortcut{
+  background-image:url( ../images/laptop.png ) !important;
+}
+/* listBox Style */
+.trigger-icon{
+	width: 24px;
+}
+.trigger-icon,.trigger-icon:hover{
+	background-repeat: no-repeat;
+	background-position: 8px;
+}
+.trigger-icon.trigger-icon-default.x-form-trigger-focus{
+	background-position: 8px!important;
+}
+.trigger-search:before{
+	content: "\f002";
+}
+.trigger-clear:before{
+	content: "\f00d";
+}

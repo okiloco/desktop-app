@@ -155,6 +155,9 @@
         {
             "path": "bootstrap.css",
             "bootstrap": true
+        },
+        {
+            "path": "resources/css/customStyles.css"
         }
     ],
 

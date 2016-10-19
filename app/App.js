@@ -10,8 +10,9 @@ Ext.define('Desktop.App', {
 
     requires: [
         'Ext.window.MessageBox',
-
         'Ext.ux.desktop.ShortcutModel',
+        'MyDesktop.utils.Store',
+        'MyDesktop.utils.com.*'
         
     ],
 
@@ -40,13 +41,12 @@ Ext.define('Desktop.App', {
         Ext.Array.each(dataModulosConfig, function(record, index, total) {
             modulosConfig[index]=record;
         });
-        console.log(modulosConfig);
         return Ext.apply(ret, {
             //cls: 'ux-desktop-black',
 
-            contextMenuItems: [
+            /*contextMenuItems: [
                 { text: 'Change Settings', handler: me.onSettings, scope: me }
-            ],
+            ],*/
 
             shortcuts: Ext.create('Ext.data.Store', {
                 model: 'Ext.ux.desktop.ShortcutModel',
