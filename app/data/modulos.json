@@ -1,0 +1,8 @@
+{
+	"data":[
+		{
+			"className":"Desktop.modules.test.test",
+			"config": {"name" :"Test Module","iconCls": "cpu-shortcut","module" : "test-window"}
+		}
+	]
+}

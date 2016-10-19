@@ -17,8 +17,8 @@ Ext.application({
         'MyDesktop.Login'
     ],
     init: function() {
-        console.info(window.localStorage.getItem('logIn'));
         Ext.fly('appLoadingIndicator').destroy();
         var app = (window.localStorage.getItem('logIn')==1)?new Desktop.App():new MyDesktop.Login();
+        console.info(window.localStorage.getItem('logIn'));
     }
 });

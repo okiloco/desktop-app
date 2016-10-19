@@ -15,9 +15,36 @@ Ext.define('MyDesktop.AuthenticationController', {
         me=this;
         if (form.getForm().isValid()) {
 
-            window.localStorage.setItem('logIn', 1);
-            location.reload();
-
+            Ext.Ajax.request({
+                scope: this,
+                async:false,
+                url: Constants.URL_MODULOS,
+                success: function(response) {
+                    var responseObject = Ext.decode(response.responseText);
+                    console.log(responseObject);
+                    var data=responseObject.data,
+                    modulos=[],
+                    modulos_config=[];
+                    Ext.Array.each(data, function(record, index, total) {
+                        modulos[index]=record.className;
+                        modulos_config[index]=record.config;
+                    });
+                    
+                    window.localStorage.setItem('logIn', 1);
+                    window.localStorage.setItem('MODULOS', JSON.stringify(modulos));
+                    window.localStorage.setItem('MODULOS_CONFIG', JSON.stringify(modulos_config));
+                    location.reload();
+                },
+                failure: function(response) {
+                    Ext.Msg.show({
+                        title: 'Error',
+                        msg: 'Error al procesar la petición.',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.ERROR
+                    });
+                }
+            });
+          
            /* form.getForm().submit({
                 url: constants.URL_LOGIN_APP,               
                 waitMsg: 'Procesando...',
@@ -47,7 +74,6 @@ Ext.define('MyDesktop.AuthenticationController', {
                 }
                                    
             });*/
-            location.reload();
         }   
         // this.redirectTo('dashboard', true);
     },

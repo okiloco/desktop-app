@@ -12,19 +12,7 @@ Ext.define('Desktop.App', {
         'Ext.window.MessageBox',
 
         'Ext.ux.desktop.ShortcutModel',
-        // 'MyDesktop.utils.Constants',
-        'Desktop.SystemStatus',
-        'Desktop.VideoWindow',
-        'Desktop.GridWindow',
-        'Desktop.TabWindow',
-        'Desktop.AccordionWindow',
-        'Desktop.Notepad',
-        'Desktop.BogusMenuModule',
-        'Desktop.BogusModule',
-        // 'Desktop.modules.test.test',
-
-//        'Desktop.Blockalanche',
-        'Desktop.Settings'
+        
     ],
 
     init: function() {
@@ -36,24 +24,23 @@ Ext.define('Desktop.App', {
     },
 
     getModules : function(){
-        return [
-            new Desktop.VideoWindow(),
-            //new Desktop.Blockalanche(),
-            new Desktop.SystemStatus(),
-            new Desktop.GridWindow(),
-            new Desktop.TabWindow(),
-            new Desktop.AccordionWindow(),
-            new Desktop.Notepad(),
-            new Desktop.BogusMenuModule(),
-            new Desktop.BogusModule(),
-            // new Desktop.modules.test.test()
-            Ext.create('Desktop.modules.test.test')
-        ];
+        var dataModulos=JSON.parse(window.localStorage.getItem('MODULOS')),
+        modulos=[];
+        Ext.Array.each(dataModulos, function(record, index, total) {
+            modulos[index]=Ext.create(record);
+        });
+        return modulos;
     },
 
     getDesktopConfig: function () {
-        var me = this, ret = me.callParent();
+        var me = this, ret = me.callParent(),
+        dataModulosConfig=JSON.parse(window.localStorage.getItem('MODULOS_CONFIG')),
+        modulosConfig=[];
 
+        Ext.Array.each(dataModulosConfig, function(record, index, total) {
+            modulosConfig[index]=record;
+        });
+        console.log(modulosConfig);
         return Ext.apply(ret, {
             //cls: 'ux-desktop-black',
 
@@ -63,13 +50,7 @@ Ext.define('Desktop.App', {
 
             shortcuts: Ext.create('Ext.data.Store', {
                 model: 'Ext.ux.desktop.ShortcutModel',
-                data: [
-                    { name: 'Grid Window', iconCls: 'grid-shortcut', module: 'grid-win' },
-                    { name: 'Accordion Window', iconCls: 'accordion-shortcut', module: 'acc-win' },
-                    { name: 'Notepad', iconCls: 'notepad-shortcut', module: 'notepad' },
-                    { name: 'System Status', iconCls: 'cpu-shortcut', module: 'systemstatus'},
-                    { name: 'Test Module', iconCls: 'cpu-shortcut', module: 'test'}
-                ]
+                data: modulosConfig
             }),
 
             wallpaper: 'resources/images/wallpapers/lock-screen-background.jpg',
@@ -83,14 +64,16 @@ Ext.define('Desktop.App', {
 
         return Ext.apply(ret, {
             title: 'Don Griffin',
-            iconCls: 'user',
+            iconCls: 'fa fa-user',
             height: 300,
             toolConfig: {
+
                 width: 100,
                 items: [
                     {
                         text:'Salir',
-                        iconCls:'logout',
+                        // iconCls:'logout',
+                        iconCls:'fa fa-sign-out',
                         handler: me.onLogout,
                         scope: me
                     }
@@ -103,13 +86,15 @@ Ext.define('Desktop.App', {
         var ret = this.callParent();
 
         return Ext.apply(ret, {
-            quickStart: [
+            startBtnText:'Inicio',
+            /*quickStart: [
                 { name: 'Accordion Window', iconCls: 'accordion', module: 'acc-win' },
                 { name: 'Grid Window', iconCls: 'icon-grid', module: 'grid-win' }
-            ],
+            ],*/
             trayItems: [
                 { xtype: 'trayclock', flex: 1 }
             ]
+
         });
     },
 
