@@ -1,7 +1,9 @@
 Ext.define('Desktop.modules.test.testView', {
-	extend: 'Ext.form.Panel',
+	extend: 'Ext.panel.Panel',
 	alias: ['widget.testview'],
-	bodyPadding:'5px',
+	layout:{
+		type:'border',
+	},
 	initComponent: function() {
 		var me = this;
 		
@@ -13,49 +15,85 @@ Ext.define('Desktop.modules.test.testView', {
 		});
 
 		Ext.applyIf(me, {
-			
 			items:[
 				{
-					xtype: 'textfield',
-					name: 'nombre',
-					emptyText: 'Nombre'
+					xtype:'form',
+					region:'west',
+					bodyPadding:'5px',
+					items:[
+						{
+							xtype: 'textfield',
+							name: 'nombre',
+							emptyText: 'Nombre'
+						},
+						{
+							xtype: 'textfield',
+							name: 'email',
+							emptyText: 'Email'
+						},
+						{
+							xtype: 'textfield',
+							name: 'telefono',
+							emptyText: 'Telefono'
+						},
+						{
+							xtype: 'listBox',
+							name: 'tipo',
+							emptyText: 'Tipo',
+							store: Ext.create('MyDesktop.utils.Store', {
+							    fields: ['value', 'name'],
+							    data : [
+							        {"value":"AL", "name":"Alabama"}        
+							    ]
+							}),
+							queryMode: 'local',
+						    displayField: 'name',
+						    valueField: 'value'
+						},
+						{
+							xtype: 'listBox',
+							name: 'className',
+							emptyText: 'Modulo',
+							width:200,
+							store: Ext.create('MyDesktop.utils.Store', {
+								model:'Modulo',
+								url:Constants.URL_MODULOS
+							}),
+							queryMode: 'local',
+						    displayField: 'className',
+						    valueField: 'className'
+						},
+						{
+							xtype:'searchfield',
+							// multiline:true,
+							emptyText:'Buscar',
+							listeners:{
+								search:function(self){
+									console.log("search");
+								}
+							}
+						}
+					],
+					buttons:[
+						{
+							xtype: 'button',
+							text:'Enviar'
+						}
+					]
 				},
 				{
-					xtype: 'textfield',
-					name: 'email',
-					emptyText: 'Email'
-				},
-				{
-					xtype: 'textfield',
-					name: 'telefono',
-					emptyText: 'Telefono'
-				},
-				{
-					xtype: 'listBox',
-					name: 'tipo',
-					emptyText: 'Tipo',
-					store: Ext.create('MyDesktop.utils.Store', {
-					    fields: ['value', 'name'],
-					    data : [
-					        {"value":"AL", "name":"Alabama"}        
-					    ]
-					}),
-					queryMode: 'local',
-				    displayField: 'name',
-				    valueField: 'value'
-				},
-				{
-					xtype: 'listBox',
-					name: 'className',
-					emptyText: 'Modulo',
-					width:200,
+					xtype:'grilla',
+					region:'center',
+					columns:[
+						{
+							text:'Modulo',
+							dataIndex:'className'
+						}
+					],
 					store: Ext.create('MyDesktop.utils.Store', {
 						model:'Modulo',
 						url:Constants.URL_MODULOS
-					}),
-					queryMode: 'local',
-				    displayField: 'className',
-				    valueField: 'className'
+					})
 				}
 			],
 			listeners:{

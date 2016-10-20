@@ -2,7 +2,6 @@ Ext.define('MyDesktop.utils.searchField', {
 	extend: 'Ext.container.Container',
 	alias: ['widget.searchfield'],
 	
-	ui:"notmal",
 	defaults:{
 		// margin:1,
 
@@ -23,12 +22,13 @@ Ext.define('MyDesktop.utils.searchField', {
 					xtype: (me.multiline)?'textarea':'textfield',
 					grow:(me.multiline),
 					growMax:100, 
-					width:(typeof(me.width)!="undefined")?me.width:'100%',
+					width:(typeof(me.width)!="undefined")?me.width:200,
 					allowBlank:(typeof(me.allowBlank)!="undefined")?me.allowBlank:true,
 					name: (typeof(me.name)!="undefined")?me.name:'filtro',
 					emptyText: (typeof(me.emptyText)!="undefined")?me.emptyText:'Filtrar'
 				},
 				{
+					cls:'search-buttons',
 					layout:{
 						type:(me.multiline)?"vbox":"hbox",
 					},
@@ -42,11 +42,12 @@ Ext.define('MyDesktop.utils.searchField', {
 					items:[
 						{
 							xtype: 'button',
-							iconCls:(typeof(me.trigger1Cls)!="undefined")?me.trigger1Cls:"icon-filter-add-blue",
-							tooltip:(typeof(me.trigger1Tooltip)!="undefined")?me.trigger1Tooltip:'Enviar '+me.emptyText,
+							iconCls:(typeof(me.trigger1Cls)!="undefined")?me.trigger1Cls: Ext.baseCSSPrefix + 'form-search-trigger',
+							tooltip:(typeof(me.trigger1Tooltip)!="undefined")?me.trigger1Tooltip:'Enviar',
 							maxHeight:24,
 							maxWidth:24,
 							name: 'filtrar',
+							cls:'trigger-btn',
 							// cls:"x-btn-default-toolbar-small",
 							scope:me,
 							handler:function(self){
@@ -57,9 +58,10 @@ Ext.define('MyDesktop.utils.searchField', {
 						{
 							xtype: 'button',
 							name: 'limpiar',
+							cls:'trigger-btn',
 							// cls:"x-btn-default-toolbar-small",
 							maxHeight:24,
-							iconCls:(typeof(me.trigger2Cls)!="undefined")?me.trigger2Cls:"icon-filter-delete-blue",
+							iconCls:(typeof(me.trigger2Cls)!="undefined")?me.trigger2Cls:Ext.baseCSSPrefix + 'form-clear-trigger',
 							tooltip:(typeof(me.trigger2Tooltip)!="undefined")?me.trigger2Tooltip:'Limpiar',
 							hidden:true,
 							handler:function(self){
