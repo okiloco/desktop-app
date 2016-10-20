@@ -7,13 +7,6 @@ Ext.define('Desktop.modules.test.testView', {
 	initComponent: function() {
 		var me = this;
 		
-		Ext.define('Modulo', {
-			extend: 'Ext.data.Model',
-			fields:[
-				'className'
-			]
-		});
-
 		Ext.applyIf(me, {
 			items:[
 				{
@@ -56,7 +49,9 @@ Ext.define('Desktop.modules.test.testView', {
 							emptyText: 'Modulo',
 							width:200,
 							store: Ext.create('MyDesktop.utils.Store', {
-								model:'Modulo',
+								fields:[
+									'className'
+								],
 								url:Constants.URL_MODULOS
 							}),
 							queryMode: 'local',
@@ -91,7 +86,9 @@ Ext.define('Desktop.modules.test.testView', {
 						}
 					],
 					store: Ext.create('MyDesktop.utils.Store', {
-						model:'Modulo',
+						fields:[
+							'className'
+						],
 						url:Constants.URL_MODULOS
 					})
 				}
