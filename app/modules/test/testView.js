@@ -7,6 +7,8 @@ Ext.define('Desktop.modules.test.testView', {
 	initComponent: function() {
 		var me = this;
 		
+		
+
 		Ext.applyIf(me, {
 			items:[
 				{
